@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/TakesxiSximada/sliding/issues"
   },
-  "homepage": "https://github.com/TakesxiSximada/sliding"
+  "homepage": "https://github.com/TakesxiSximada/sliding",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  }
 }

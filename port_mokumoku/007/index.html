@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Bluemix + Python で宇宙人を発見する</title>
+    <title>Bokehでデータ可視化</title>
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,14 +53,16 @@
            displayed as a slide -->
       <div class="slides">
         <section>
-          <h1>*** 前哨戦 ***</h1>
-          <h1>Bluemix + Python で</h1>
-          <h1>宇宙文明を発見する</h1>
+          <h1>Bokehでデータ可視化</h1>
           <p>
             <small>Created
               by <a href="https://about.me/TakesxiSximada">嶋田健志</a>
               / <a href="https://twitter.com/TakesxiSximada">@TakesxiSximada</a></small>
           </p>
+        </section>
+
+        <section>
+          <h1>はい</h1>
         </section>
 
         <section>
@@ -75,14 +77,19 @@
         </section>
 
         <section>
-          <h2>【宣伝】本書きました(共著)</h2>
+          <h1>宣伝</h1>
+        </section>
+
+        <section>
+          <h2>本書きました 好評発売中(共著)</h2>
           <h3>Pythonエンジニア養成読本 (技術評論社)</h3>
           <p><a href="http://gihyo.jp/book/2015/978-4-7741-7320-7">http://gihyo.jp/book/2015/978-4-7741-7320-7</a></p>
           <img src="/static/img/pymook.jpg"></img>
         </section>
 
         <section>
-          <h2>【宣伝】読書会もやっています</h2>
+          <h2>読書会もやっています</h2>
+          <h3>次回は2015/08/27(木)</h3>
           <a href="http://pymook.connpass.com/event/16291/">http://pymook.connpass.com/event/16291/</a>
           <div>
             <img src="/static/img/pymook-reading-02.png" style="height: 500px;"></img>
@@ -90,160 +97,203 @@
         </section>
 
         <section>
-          <h2>【宣伝】DjangGirlsやります</h2>
-          <p>Django のワークショップ</p>
+          <h2>DjangGirls<br/><strike>やります</strike>やりました</h2>
+          <h3>Django のワークショップ (女性限定)</h3>
+          <h3>第2回も計画中</h3>
           <a href="http://djangogirls.org/tokyo/">http://djangogirls.org/tokyo/</a>
           <div>
-            <img src="/static/img/django-girls.png" style="height: 300px;"></img>
+            <img src="/static/img/django-girls.png" style="height: 150px;"></img>
           </div>
         </section>
+
+        <section>
+          <h2>SoftLayer Bluemix SUMMIT 2015</h2>
+          <h3>NASAをHack!Bluemix+Pythonを駆使した宇宙人探し奮闘記</h3>
+          <h3>2015/09/02 (水) トークセッションします</h3>
+          <div>
+            <a href="http://softlayer-bluemix-summit.jp/">http://softlayer-bluemix-summit.jp/</a>
+          </div>
+          <div>
+            <img src="static/img/softlayer-bluemix-summit-2015.png" style="height: 300px;"></img>
+          </div>
+        </section>
+
+        <section>
+          <h2>PyConJP 2015 チュートリアル</h2>
+          <h3>【初心者向けPythonチュートリアル】Webスクレイピングに挑戦してみよう(ja)</h3>
+          <h3>採用されました(2015-10-09(金)に行います)</h3>
+          <div>
+            <a href="https://pycon.jp/2015/ja/schedule/presentation/2">https://pycon.jp/2015/ja/schedule/presentation/2/</a>
+          </div>
+          <div>
+            <img src="static/img/cfp.png" style="height: 150px;"></img>
+          </div>
+        </section>
+
+        <section>
+          <h2>PyConJP 2015 トークセッション</h2>
+          <h3>Python × Bluemix でやったHack-a-thonでの超短期間認識系アプリ開発事例(ja)</h3>
+          <p>BIMのIaaS/PaaSであるBluemixを用いてアプリケーションをいかに素早く作成してdeploy方法などを当日のドタバタを含めて紹介</p>
+          <div>
+            <a href="https://pycon.jp/2015/ja/proposals/vote/118/">https://pycon.jp/2015/ja/proposals/vote/118/</a>
+          </div>
+          <div>
+            <img src="static/img/cfp.png" style="height: 150px;"></img>
+          </div>
+        </section>
+
         <section>
           <h2>本題</h2>
         </section>
-        <section>
-          <h2>宇宙にはたくさんの星がある</h2>
-    <div id="view"></div>
-    <script>
-      var view = new HappyWebGL.GlobalView(window, '#view');
-      view.init();
-      view.setup();
-      view.start();
-    </script>
 
-        </section>
         <section>
-          <h2>文明を持った知的な存在も</h2>
-          <h2>発生していたはず</h2>
+          <h2>前回のport_mokumoku #06 では</h2>
+          <h2>こんなことをしていた</h2>
         </section>
+
         <section>
-          <h2>宇宙に漂う天体にその痕跡があるはず!!</h2>
+          <h2>前回のport_mokumokuでやっていたこと</h2>
+          <h3 class="fragment">宇宙にはたくさんの星がある</h3>
+          <h3 class="fragment">文明を持った知的な存在も発生していたはず</h3>
+          <h3 class="fragment">宇宙に漂う天体にその痕跡があるはず!!</h3>
         </section>
+
         <section>
-          <h2>それを探し出そう</h2>
-          <p>...画像解析で(ボソッ)</p>
+          <div id="view"></div>
+          <script>
+            var view = new HappyWebGL.GlobalView(window, '#view');
+            view.init();
+            view.setup();
+            view.start();
+          </script>
         </section>
+
         <section>
-          <h2>こういうのを見つけたい</h2>
-          <img src="/static/img/mar-gray-001.png" style="height: 500px;"></img>
+          <h2>こういうのを探していた</h2>
+          <img src="/static/img/mar-gray-001.png" style="height: 400px;"></img>
+          <h3 class="fragment">...今日はこれはやりません(気乗りしなかったので)</h3>
         </section>
+
+
         <section>
-          <p>今回は</p>
-          <h2>IBM Bluemixに</h2>
-          <h2>物体認識用のAPIがある</h2>
-          <p>のでそれを使って見る</p>
-          <a href="">
-            <img src="/static/img/bluemix.png" style="float: right; height: 20%; width: 20%;"></img>
-          </a>
+          <h2>Python界隈ではデータ解析系が</h2>
+          <h2>とても盛り上がっている</h2>
         </section>
+
         <section>
-          <h2>物体認識</h2>
-          <pre>
-            物体認識（ぶったいにんしき、英: Object Recognition）とは、画像や動画の中から与えられた物体を検出すること。大きく分けて一般物体認識と特定物体認識の二つがある。
-          </pre>
-          by Wikipedia
-          <pre>
-            <a href="https://ja.wikipedia.org/wiki/%E7%89%A9%E4%BD%93%E8%AA%8D%E8%AD%98">https://ja.wikipedia.org/wiki/%E7%89%A9%E4%BD%93%E8%AA%8D%E8%AD%98</a>
-            </pre>
-        </section>
-        <section>
-          <h2>もしかしたらうまく認識してくれるかもしれないのでやってみる</h2>
-        </section>
-        <section>
-          <h2>え、どうやってつかうの?</h2>
+          <h3>関連ツール/ライブラリ</h3>
+          <h5>統計/機械学習</h5>
           <ul>
-            <li>REST API</li>
-            <li>Multi-Partでファイルを送信する</li>
-            <li>結果はJSON形式で返される</li>
+            <li>pandas</li>
+            <li>scikit-learn</li>
+            <li>pylean2</li>
+            <li>chainer</li>
+          </ul>
+          <br/>
+          <div><br/></div>
+          <h5>自然言語系</h5>
+          <ul>
+            <li>NLTK</li>
+            <li>igo-python</li>
+            <li>pymecab</li>
           </ul>
         </section>
         <section>
-          <h2>コードはこんな感じ</h2>
-          <pre>
-            <code>
-import json
-import requests
-auth_token = username, password
-res = requests.post(
-    url, auth=auth_token,
-    files={
-        'imgFile': (filename, open(filepath, 'rb')),
-        }
-    )
-if res.status_code == requests.codes.ok:
-    data = json.loads(res.text)
-    for img in data['images']:
-        print('{} - {}'.format(img['image_id'], img['image_name']))
-        for label in img['labels']:
-            print('    {:30}: {}'.format(label['label_name'], label['label_score']))
-            </code>
-          </pre>
-        </section>
-        <section>
-          <h2>月面画像を投げて...</h2>
-        </section>
-        <section>
-          <h2>月面画像を投げて、投げて...</h2>
-        </section>
-        <section>
-          <h2>月面画像を投げて、投げて、投げまくって...</h2>
-          <p>(10000枚ぐらい)</p>
-        </section>
-        <section>
-          <h2>結果はこんな感じで帰ってくる</h2>
-          <pre>
-            <code>
-{'images': [{'image_id': '0', 'labels': [{'label_score': '0.714211', 'label_name': 'Outdoors'}, {'label_score': '0.671271', 'label_name': 'Nature Scene'}, {'label_score': '0.669832', 'label_name': 'Winter Scene'}, {'label_score': '0.635903', 'label_name': 'Vertebrate'}, {'label_score': '0.61398', 'label_name': 'Boat'}, {'label_score': '0.610709', 'label_name': 'Animal'}, {'label_score': '0.607173', 'label_name': 'Water Vehicle'}, {'label_score': '0.580503', 'label_name': 'Placental Mammal'}, {'label_score': '0.571422', 'label_name': 'Snow Scene'}, {'label_score': '0.563129', 'label_name': 'Fabric'}, {'label_score': '0.56078', 'label_name': 'Gray'}, {'label_score': '0.555034', 'label_name': 'Water Sport'}, {'label_score': '0.533461', 'label_name': 'Person'}, {'label_score': '0.515725', 'label_name': 'Mammal'}, {'label_score': '0.511447', 'label_name': 'Surface Water Sport'}], 'image_name': '2015-04-12-11.47.01.png'}]}
-            </code>
-          </pre>
-        </section>
-        <section>
-          <h2>結果.1</h2>
-          <h3>ゴリラがいました</h3>
-          <img src="/static/img/mar-gollira-001.png" style="height: 300px;"></img>
-          <p>Gollira (83%)</p>
-        </section>
-        <section>
-          <h2>結果.2</h2>
-          <h3>猫科の肉食動物がいました</h3>
-          <img src="/static/img/mar-cougar-001.png" style="height: 300px;"></img>
-          <p>Couger (77%)</p>
-        </section>
-        <section>
-          <h2>結果.3</h2>
-          <h3>Ｇもいました</h3>
-          <img src="/static/img/mar-cockroach-001.png" style="height: 300px;"></img>
-          <p>Cockroach (75%)</p>
-        </section>
-        <section>
-          <h2>正直微妙だ...</h2>
-          <h2>意図した結果は得られない</h2>
-        </section>
-        <section>
-          <li>今回はsliding windowで画像を横方向にcutしたものをAPIに投げた</li>
-          <li>回転方向でも認識結果はかわるだろうか? -> 試してみたい</li>
-          <li>画像が多くなるので選別しないといけない -> 何も写っていない画像をあらかじめ弾いておく</li>
-        </section>
-        <section>
-          <h2>現在、継続作業中 (乞期待)</h2>
+          <h3>関連ツール/ライブラリ まだまだ</h3>
+          <h5>データビジュアライズ</h5>
+          <ul>
+            <li>matplotlib</li>
+            <li>Bokeh</li>
+          </ul>
+          <div><br/></div>
+          <h5>その他</h5>
+          <ul>
+            <li>IPython<br/>notebook</li>
+            <li>anaconda</li>
+          </ul>
         </section>
 
         <section>
-          <h2>IBM DeveloperWorks</h2>
-          <h2>掲載されました</h2>
-          <h3>IBM Watson Developer Cloud Visual Recognition で物体認識させる</h3>
-          <p>
-            <a href="https://www.ibm.com/developerworks/jp/cloud/library/cl-bluemix-visualrecognition/">
-              https://www.ibm.com/developerworks/jp/cloud/library/cl-bluemix-visualrecognition/
-            </a>
-          </p>
+          <h3>....多い</h3>
+          <h4>しかもそれぞれむずい</h4>
+        </section>
+
+        <section>
+          <h3>今日はBokehを使ってみた</h3>
+        </section>
+
+        <section>
+          <h3>Bokeh - Statistical and novel interactive HTML plots for Python</h3>
+          <ul>
+            <li>読み方はボケ</li>
+            <li>グラフを作成するためのライブラリ</li>
+            <li>今まであったものでいうとmatplotlibてきなやつ</li>
+            <li>動的なグラフとかが割と楽に作れる(らしい (よくわかっていない))</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Bokehのグラフを覗いてみる</h3>
+          <h4><a href="http://bokeh.pydata.org/">http://bokeh.pydata.org/</a></h4>
+        </section>
+
+        <section>
+          <h3>すごい簡単</h3>
+          <h3 class="fragment">....なのかな?</h3>
+        </section>
+
+        <section>
+          <h3>とりあえずなんか書いてみる</h3>
+          <h4>特に理由はないけど</h4>
+          <h4>Gitのコード量の増減をグラフにしてみよう</h4>
+          <h4 class="fragment">....<a href="./Untitled.ipynb">IPython notebookで</a></h4>
+        </section>
+
+        <section>
+          <h3>せっかくなんでscriptにしておこう</h3>
+          <h4><a href="https://gist.github.com/TakesxiSximada/fddd6df72b5762ebcd39#file-git-counter-py">https://gist.github.com/TakesxiSximada/fddd6df72b5762ebcd39#file-git-counter-py</a></h4>
+        </section>
+
+        <section>
+          <img src="./static/img/tweet1.png"></img>
+        </section>
+
+        <section>
+          <img src="./static/img/tweet2.png"></img>
+        </section>
+
+        <section>
+          <h3>READMEとrequirements.txtを書いておいた</h3>
+          <h4><a href="https://gist.github.com/TakesxiSximada/fddd6df72b5762ebcd39">https://gist.github.com/TakesxiSximada/fddd6df72b5762ebcd39</a></h4>
+          <h4>shimizukawa++</h4>
+        </section>
+
+        <section>
+          <h4>実行結果は<a href="./output.html">こちら</a></h4>
+        </section>
+
+        <section>
+          <h3>今日のまとめ</h3>
+          <ul>
+            <li>宇宙人は探さなかった</li>
+            <li>bokehが出力するグラフは結構いい感じ</li>
+            <li>でもやっぱりすこし触って実験する必要ありそう</li>
+          </ul>
         </section>
 
         <section>
           <h1>みんなやろうよ!!</h1>
-          <h1>Bluemix</h1>
+          <h1>Bokeh</h1>
           <a href="">
-            <img src="/static/img/bluemix.png" style="float: right; height: 20%; width: 20%;"></img>
+            <img src="/static/img/bokeh.png" style="float: right; height: 20%; width: 20%;"></img>
           </a>
+          <p>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+          </p>
+          <h2>おわり</h2>
         </section>
       </div>
     </div>

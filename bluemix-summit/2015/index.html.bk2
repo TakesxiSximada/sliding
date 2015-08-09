@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Bluemix + Python で宇宙人を発見する</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="/bower_components/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/bower_components/reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="/bower_components/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' ); link.rel =
+      'stylesheet'; link.type = 'text/css'; link.href =
+      window.location.search.match( /print-pdf/gi ) ?
+      'css/print/pdf.css' : '/bower_components/reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild(
+      link );
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script> <![endif]-->
+
+
+    <meta meta="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" media="all" href="/static/css/base.css">
+    <script src="/bower_components/threejs/build/three.min.js"></script>
+	<script src="/lib/fonts/gentilis_bold.typeface.js"></script>
+	<script src="/lib/fonts/gentilis_regular.typeface.js"></script>
+	<script src="/lib/fonts/optimer_bold.typeface.js"></script>
+	<script src="/lib/fonts/optimer_regular.typeface.js"></script>
+	<script src="/lib/fonts/helvetiker_bold.typeface.js"></script>
+	<script src="/lib/fonts/helvetiker_regular.typeface.js"></script>
+	<script src="/lib/fonts/droid/droid_sans_regular.typeface.js"></script>
+	<script src="/lib/fonts/droid/droid_sans_bold.typeface.js"></script>
+	<script src="/lib/fonts/droid/droid_serif_regular.typeface.js"></script>
+	<script src="/lib/fonts/droid/droid_serif_bold.typeface.js"></script>
+	<script src="/bower_components/threejs/examples/js/controls/TrackballControls.js"></script>
+    <script src="HappyWebGL.js"></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is
+           displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>*** 前哨戦 ***</h1>
+          <h1>Bluemix + Python で</h1>
+          <h1>宇宙文明を発見する</h1>
+          <p>
+            <small>Created
+              by <a href="https://about.me/TakesxiSximada">嶋田健志</a>
+              / <a href="https://twitter.com/TakesxiSximada">@TakesxiSximada</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>お前誰よ(自己紹介)</h1>
+          <img src="/static/img/sximada.png" style="float: right; height: 20%; width: 20%;"></img>
+          <ul>
+            <li>嶋田健志 (@TakesxiSximada)</li>
+            <li>Webエンジニア</li>
+            <li>フリーランス</li>
+            <li>Python好き</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>【宣伝】本書きました(共著)</h2>
+          <h3>Pythonエンジニア養成読本 (技術評論社)</h3>
+          <p><a href="http://gihyo.jp/book/2015/978-4-7741-7320-7">http://gihyo.jp/book/2015/978-4-7741-7320-7</a></p>
+          <img src="/static/img/pymook.jpg"></img>
+        </section>
+
+        <section>
+          <h2>【宣伝】読書会もやっています</h2>
+          <a href="http://pymook.connpass.com/event/16291/">http://pymook.connpass.com/event/16291/</a>
+          <div>
+            <img src="/static/img/pymook-reading-02.png" style="height: 500px;"></img>
+          </div>
+        </section>
+
+        <section>
+          <h2>【宣伝】DjangGirlsやります</h2>
+          <p>Django のワークショップ</p>
+          <a href="http://djangogirls.org/tokyo/">http://djangogirls.org/tokyo/</a>
+          <div>
+            <img src="/static/img/django-girls.png" style="height: 300px;"></img>
+          </div>
+        </section>
+        <section>
+          <h2>本題</h2>
+        </section>
+        <section>
+          <h2>宇宙にはたくさんの星がある</h2>
+    <div id="view"></div>
+    <script>
+      var view = new HappyWebGL.GlobalView(window, '#view');
+      view.init();
+      view.setup();
+      view.start();
+    </script>
+
+        </section>
+        <section>
+          <h2>文明を持った知的な存在も</h2>
+          <h2>発生していたはず</h2>
+        </section>
+        <section>
+          <h2>宇宙に漂う天体にその痕跡があるはず!!</h2>
+        </section>
+        <section>
+          <h2>それを探し出そう</h2>
+          <p>...画像解析で(ボソッ)</p>
+        </section>
+        <section>
+          <h2>こういうのを見つけたい</h2>
+          <img src="/static/img/mar-gray-001.png" style="height: 500px;"></img>
+        </section>
+        <section>
+          <p>今回は</p>
+          <h2>IBM Bluemixに</h2>
+          <h2>物体認識用のAPIがある</h2>
+          <p>のでそれを使って見る</p>
+          <a href="">
+            <img src="/static/img/bluemix.png" style="float: right; height: 20%; width: 20%;"></img>
+          </a>
+        </section>
+        <section>
+          <h2>物体認識</h2>
+          <pre>
+            物体認識（ぶったいにんしき、英: Object Recognition）とは、画像や動画の中から与えられた物体を検出すること。大きく分けて一般物体認識と特定物体認識の二つがある。
+          </pre>
+          by Wikipedia
+          <pre>
+            <a href="https://ja.wikipedia.org/wiki/%E7%89%A9%E4%BD%93%E8%AA%8D%E8%AD%98">https://ja.wikipedia.org/wiki/%E7%89%A9%E4%BD%93%E8%AA%8D%E8%AD%98</a>
+            </pre>
+        </section>
+        <section>
+          <h2>もしかしたらうまく認識してくれるかもしれないのでやってみる</h2>
+        </section>
+        <section>
+          <h2>え、どうやってつかうの?</h2>
+          <ul>
+            <li>REST API</li>
+            <li>Multi-Partでファイルを送信する</li>
+            <li>結果はJSON形式で返される</li>
+          </ul>
+        </section>
+        <section>
+          <h2>コードはこんな感じ</h2>
+          <pre>
+            <code>
+import json
+import requests
+auth_token = username, password
+res = requests.post(
+    url, auth=auth_token,
+    files={
+        'imgFile': (filename, open(filepath, 'rb')),
+        }
+    )
+if res.status_code == requests.codes.ok:
+    data = json.loads(res.text)
+    for img in data['images']:
+        print('{} - {}'.format(img['image_id'], img['image_name']))
+        for label in img['labels']:
+            print('    {:30}: {}'.format(label['label_name'], label['label_score']))
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>月面画像を投げて...</h2>
+        </section>
+        <section>
+          <h2>月面画像を投げて、投げて...</h2>
+        </section>
+        <section>
+          <h2>月面画像を投げて、投げて、投げまくって...</h2>
+          <p>(10000枚ぐらい)</p>
+        </section>
+        <section>
+          <h2>結果はこんな感じで帰ってくる</h2>
+          <pre>
+            <code>
+{'images': [{'image_id': '0', 'labels': [{'label_score': '0.714211', 'label_name': 'Outdoors'}, {'label_score': '0.671271', 'label_name': 'Nature Scene'}, {'label_score': '0.669832', 'label_name': 'Winter Scene'}, {'label_score': '0.635903', 'label_name': 'Vertebrate'}, {'label_score': '0.61398', 'label_name': 'Boat'}, {'label_score': '0.610709', 'label_name': 'Animal'}, {'label_score': '0.607173', 'label_name': 'Water Vehicle'}, {'label_score': '0.580503', 'label_name': 'Placental Mammal'}, {'label_score': '0.571422', 'label_name': 'Snow Scene'}, {'label_score': '0.563129', 'label_name': 'Fabric'}, {'label_score': '0.56078', 'label_name': 'Gray'}, {'label_score': '0.555034', 'label_name': 'Water Sport'}, {'label_score': '0.533461', 'label_name': 'Person'}, {'label_score': '0.515725', 'label_name': 'Mammal'}, {'label_score': '0.511447', 'label_name': 'Surface Water Sport'}], 'image_name': '2015-04-12-11.47.01.png'}]}
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>結果.1</h2>
+          <h3>ゴリラがいました</h3>
+          <img src="/static/img/mar-gollira-001.png" style="height: 300px;"></img>
+          <p>Gollira (83%)</p>
+        </section>
+        <section>
+          <h2>結果.2</h2>
+          <h3>猫科の肉食動物がいました</h3>
+          <img src="/static/img/mar-cougar-001.png" style="height: 300px;"></img>
+          <p>Couger (77%)</p>
+        </section>
+        <section>
+          <h2>結果.3</h2>
+          <h3>Ｇもいました</h3>
+          <img src="/static/img/mar-cockroach-001.png" style="height: 300px;"></img>
+          <p>Cockroach (75%)</p>
+        </section>
+        <section>
+          <h2>正直微妙だ...</h2>
+          <h2>意図した結果は得られない</h2>
+        </section>
+        <section>
+          <li>今回はsliding windowで画像を横方向にcutしたものをAPIに投げた</li>
+          <li>回転方向でも認識結果はかわるだろうか? -> 試してみたい</li>
+          <li>画像が多くなるので選別しないといけない -> 何も写っていない画像をあらかじめ弾いておく</li>
+        </section>
+        <section>
+          <h2>現在、継続作業中 (乞期待)</h2>
+        </section>
+
+        <section>
+          <h2>IBM DeveloperWorks</h2>
+          <h2>掲載されました</h2>
+          <h3>IBM Watson Developer Cloud Visual Recognition で物体認識させる</h3>
+          <p>
+            <a href="https://www.ibm.com/developerworks/jp/cloud/library/cl-bluemix-visualrecognition/">
+              https://www.ibm.com/developerworks/jp/cloud/library/cl-bluemix-visualrecognition/
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>みんなやろうよ!!</h1>
+          <h1>Bluemix</h1>
+          <a href="">
+            <img src="/static/img/bluemix.png" style="float: right; height: 20%; width: 20%;"></img>
+          </a>
+        </section>
+      </div>
+    </div>
+
+    <script src="/bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="/bower_components/reveal.js/js/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            transition: 'slide',
+            dependencies: [{src: '/bower_components/reveal.js/lib/js/classList.js',
+                            condition: function() { return !document.body.classList; },
+                           },
+                           {src: '/bower_components/reveal.js/plugin/markdown/marked.js',
+                            condition: function() {return !!document.querySelector( '[data-markdown]' ); },
+                           },
+                           {src: '/bower_components/reveal.js/plugin/markdown/markdown.js',
+                            condition: function() { return !!document.querySelector('[data-markdown]' ); }
+                           },
+                           {src: '/bower_components/reveal.js/plugin/highlight/highlight.js',
+                            async: true,
+                            condition: function() { return !!document.querySelector( 'pre code' ); },
+                            callback: function() { hljs.initHighlightingOnLoad(); },
+                           },
+                           {src: '/bower_components/reveal.js/plugin/zoom-js/zoom.js',
+                            async: true },
+                           {src: '/bower_components/reveal.js/plugin/notes/notes.js',
+                            async: true } ] });
+
+    </script>
+    <style type="text/css">
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6 {
+      text-transform: none;
+
+      }
+      </style>
+  </body>
+</html>

@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+
+    <title>NASAをHack!Bluemix+Pythonを駆使した宇宙人探し奮闘記</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="../../bower_components/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../bower_components/reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../bower_components/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' ); link.rel =
+      'stylesheet'; link.type = 'text/css'; link.href =
+      window.location.search.match( /print-pdf/gi ) ?
+      'css/print/pdf.css' : '../../bower_components/reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild(
+      link );
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="../../lib/js/html5shiv.js"></script> <![endif]-->
+
+
+    <meta meta="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" media="all" href="../../static/css/base.css">
+    <script srac="../../bower_components/threejs/build/three.min.js"></script>
+	<script src="../../lib/fonts/gentilis_bold.typeface.js"></script>
+	<script src="../../lib/fonts/gentilis_regular.typeface.js"></script>
+	<script src="../../lib/fonts/optimer_bold.typeface.js"></script>
+	<script src="../../lib/fonts/optimer_regular.typeface.js"></script>
+	<script src="../../lib/fonts/helvetiker_bold.typeface.js"></script>
+	<script src="../../lib/fonts/helvetiker_regular.typeface.js"></script>
+	<script src="../../lib/fonts/droid/droid_sans_regular.typeface.js"></script>
+	<script src="../../lib/fonts/droid/droid_sans_bold.typeface.js"></script>
+	<script src="../../lib/fonts/droid/droid_serif_regular.typeface.js"></script>
+	<script src="../../lib/fonts/droid/droid_serif_bold.typeface.js"></script>
+	<script src="../../bower_components/threejs/examples/js/controls/TrackballControls.js"></script>
+    <script src="HappyWebGL.js"></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is
+           displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>NASAをHack!</h1>
+          <h2>Bluemix+Pythonを駆使した</h2>
+          <h2>宇宙人探し奮闘記</h>
+          <p>
+            <small>Created
+              by <a href="https://about.me/TakesxiSximada">嶋田健志</a>
+              / <a href="https://twitter.com/TakesxiSximada">@TakesxiSximada</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>お前誰よ(自己紹介)</h1>
+          <img src="../..//static/img/sximada.png" style="float: right; height: 20%; width: 20%;"></img>
+          <ul>
+            <li>嶋田健志 (@TakesxiSximada)</li>
+            <li>Webエンジニア</li>
+            <li>フリーランス</li>
+            <li>Python好き</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>宣伝</h1>
+        </section>
+
+        <section>
+          <h2>本書きました 好評発売中(共著)</h2>
+          <h3>Pythonエンジニア養成読本 (技術評論社)</h3>
+          <p><a href="http://gihyo.jp/book/2015/978-4-7741-7320-7">http://gihyo.jp/book/2015/978-4-7741-7320-7</a></p>
+          <img src="../../static/img/pymook.jpg"></img>
+        </section>
+
+        <section>
+          <h2>DjangGirls<br/><strike>やります</strike>やりました</h2>
+          <h3>Django のワークショップ (女性限定)</h3>
+          <h3>第2回も計画中</h3>
+          <a href="http://djangogirls.org/tokyo/">http://djangogirls.org/tokyo/</a>
+          <div>
+            <img src="../../static/img/django-girls.png" style="height: 150px;"></img>
+          </div>
+        </section>
+
+        <section>
+          <h2>PyConJP 2015 チュートリアル</h2>
+          <h3>【初心者向けPythonチュートリアル】Webスクレイピングに挑戦してみよう(ja)</h3>
+          <h3>採用されました(2015-10-09(金)に行います)</h3>
+          <div>
+            <a href="https://pycon.jp/2015/ja/schedule/presentation/2">https://pycon.jp/2015/ja/schedule/presentation/2/</a>
+          </div>
+          <div>
+            <img src="static/img/cfp.png" style="height: 150px;"></img>
+          </div>
+        </section>
+
+        <section>
+          <h2>PyConJP 2015 トークセッション</h2>
+          <h3>Python × Bluemix でやったHack-a-thonでの超短期間認識系アプリ開発事例(ja)</h3>
+          <p>BIMのIaaS/PaaSであるBluemixを用いてアプリケーションをいかに素早く作成してdeploy方法などを当日のドタバタを含めて紹介</p>
+          <div>
+            <a href="https://pycon.jp/2015/ja/proposals/vote/118/">https://pycon.jp/2015/ja/proposals/vote/118/</a>
+          </div>
+          <div>
+            <img src="static/img/cfp.png" style="height: 150px;"></img>
+          </div>
+        </section>
+
+        <section>
+          <h2>本題</h2>
+        </section>
+
+        <section data-markdown>
+          # N = Ns × fp × ne × fl
+          # × fi × fc × L
+        </section>
+
+        <section data-markdown>
+          # 何かわかりますか?
+        </section>
+
+        <section>
+          <table>
+            <tbody>
+              <tr>
+                <td>N</td>
+                <td>銀河系に存在する高等文明の数</td>
+              </tr>
+              <tr>
+                <td>Ns</td>
+                <td>銀河系に毎年うまれる恒星の数</td>
+              </tr>
+              <tr>
+                <td>fp</td>
+                <td>その恒星が惑星系をもつ確率</td>
+              </tr>
+              <tr>
+                <td>ne</td>
+                <td>そのなかで生命が生存可能な環境をもつ惑星の数</td>
+              </tr>
+              <tr>
+                <td>fl</td>
+                <td>そこに生命が発生する確率</td>
+              </tr>
+              <tr>
+                <td>fi</td>
+                <td>その生命が知的生命体に進化する確率</td>
+              </tr>
+              <tr>
+                <td>fc</td>
+                <td>その生命体が他の星に対し通信をおこなえる確率</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>その高等文明の継続時間</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h1>つまりこういうのを</h1>
+          <h1>探したい</h1>
+          <img src="../../static/img/mar-gray-001.png" style="height: 200px;"></img>
+          <h2 class="fragment">機械学習で(ボソッ</h2>
+        </section>
+
+        <section data-markdown>
+          # 私たちは
+        </section>
+
+        <section>
+          <h1>marseface project</h1>
+          <img src="./static/img/mar.png" style="height: 400px;"></img>
+        </section>
+
+
+        <section>
+          <div id="view"></div>
+          <script>
+            var view = new HappyWebGL.GlobalView(window, '#view');
+            view.init();
+            view.setup();
+            view.start();
+          </script>
+        </section>
+
+        <section>
+          <h2>アジェンダ</h2>
+          <ol>
+            <li><font color="white">宇宙開発と機械学習</font></li>
+            <li><font color="gray">宇宙文明 VS 認識システム</font></li>
+            <li><font color="gray">成果と今後の展望</font></li>
+          </ol>
+        </section>
+
+        <section data-markdown>
+          ### 1. 宇宙開発と機械学習
+        </section>
+
+        <section data-markdown>
+          #### 近年の宇宙開発
+        </section>
+
+        <section data-markdown>
+          #### オープンデータ
+        </section>
+
+        <section data-markdown>
+          #### 宇宙関連の情報のオープンデータ化
+        </section>
+
+
+        <section data-markdown>
+          #### 機械学習の発展
+        </section>
+
+        <section data-markdown>
+          #### ディープラーニング
+        </section>
+
+        <section data-markdown>
+          #### 物体認識とディープラーニング
+        </section>
+
+        <section data-markdown>
+          #### 武器はそろった
+          http://p5.img.cctvpic.com/nettv/newgame/2011/0805/20110805042520368.jpg
+        </section>
+
+        <section data-markdown>
+          #### 今こそ旅に出る
+          http://stat.profile.ameba.jp/profile_images/03/ameba5150/1231774144321.gif
+        </section>
+
+        <section>
+          <h2>アジェンダ</h2>
+          <ol>
+            <li><font color="gray"><strike>宇宙開発と機械学習</strike></font></li>
+            <li><font color="white">宇宙文明 VS 認識システムの旅</font></li>
+            <li><font color="gray">成果と今後の展望</font></li>
+          </ol>
+        </section>
+
+        <section data-markdown>
+          ### 2. 宇宙文明 VS 認識システム
+        </section>
+
+        <section data-markdown>
+          #### Visual Recognition導入前夜
+        </section>
+
+        <section data-markdown>
+          #### より手軽な物体認識を求めて
+        </section>
+
+        <section data-markdown>
+          #### 認識システムの変遷
+          1. 画像ファイルをそのまま投入
+          2. 事前画像処理
+          3. 事前認識
+          4. システム化
+        </section>
+
+        <section data-markdown>
+          ##### 1. 画像ファイルをそのまま投入
+        </section>
+
+        <section data-markdown>
+          ###### システム構成
+        </section>
+
+        <section data-markdown>
+          ###### Bluemixの扱いに手間取る
+        </section>
+
+        <section data-markdown>
+          ###### 画像を送るだけで悪戦苦闘
+        </section>
+
+        <section data-markdown>
+          ###### 結果
+        </section>
+
+        <section data-markdown>
+          ###### クッソ!!
+        </section>
+
+        <section data-markdown>
+          ###### うまくいかない理由
+        </section>
+
+        <section data-markdown>
+          ###### そもそも誤認識を期待してデータを投げている時点で無理がある
+        </section>
+
+        <section data-markdown>
+          ###### いかにWATSONに誤認識させるか
+        </section>
+
+        <section data-markdown>
+          ##### 2. 事前画像処理
+        </section>
+
+        <section data-markdown>
+          ###### 前システムの課題
+        </section>
+
+        <section data-markdown>
+          ###### システム構成
+        </section>
+
+        <section data-markdown>
+          # スライディング
+          # ウィンドウ
+        </section>
+
+        <section data-markdown>
+          # 結果
+        </section>
+
+        <section data-markdown>
+          # クッソ!!クッソ!!
+        </section>
+
+        <section data-markdown>
+          # うまくいかない理由
+          1. 画像の向き?
+          2. 1枚の画像から少しずつピクセルをずらして画像を切り出すので画像が多くなる
+          3. 切り出す画像のサイズを変動させるともっと画像が多くなる
+        </section>
+
+        <section data-markdown>
+          # 画像多すぎ!!
+        </section>
+
+        <section data-markdown>
+          # 回転とかさせた方がいいんじゃね?
+        </section>
+
+        <section data-markdown>
+          # Bluemixを初めてからここまで2日
+        </section>
+
+        <section data-markdown>
+          # 時は流れて...
+        </section>
+
+        <section data-markdown>
+          # 回転させよう
+        </section>
+
+        <section data-markdown>
+          # システム構成
+        </section>
+
+        <section data-markdown>
+          # 画像を回転
+        </section>
+
+        <section data-markdown>
+          ###### 結果
+        </section>
+
+        <section data-markdown>
+          # クッソ!!
+          # クッソ!!
+          # クッソ!!
+        </section>
+
+        <section data-markdown>
+          # うまくいかない理由
+          1. 画像の向き関係ないかも(判定結果が変動しなかった)
+          2. 回転させるとその分画像も増える
+
+        </section>
+
+        <section data-markdown>
+          # 画像もっと多すぎ!!
+        </section>
+
+        <section data-markdown>
+          # 回転意味なくね?
+        </section>
+
+        <section data-markdown>
+          # 画像を減らしてもっと広く探索せねば...
+        </section>
+
+        <section data-markdown>
+          # 3. 事前認識
+        </section>
+
+        <section data-markdown>
+          # 前システムの課題
+        </section>
+
+        <section data-markdown>
+          # 事前に認識して送る画像を減らさないと...
+        </section>
+
+        <section data-markdown>
+          ###### システム構成
+        </section>
+
+        <section data-markdown>
+          ###### 機械学習
+        </section>
+
+        <section data-markdown>
+          ###### 学習データ
+        </section>
+
+        <section data-markdown>
+          ###### 結果
+        </section>
+
+        <section data-markdown>
+          # クッソ!!
+          # クッソ!!
+          # クッソ!!
+          # クッソ!!
+        </section>
+
+        <section data-markdown>
+          # うまくいかない理由
+          1. 学習用のデータが不適切
+          2. 過学習
+          3. 特長量の抽出がクソ
+        </section>
+
+        <section data-markdown>
+          # わからんもん
+        </section>
+
+        <section data-markdown>
+          # そういう時は...
+        </section>
+
+        <section data-markdown>
+          # DeapLearning
+          # 深層学習
+        </section>
+
+        <section data-markdown>
+          # pylean2 ?
+          # or
+          # chainer ?
+        </section>
+
+        <section data-markdown>
+          # pylean2
+          - Python製のDeapLearing実装の一つ
+        </section>
+
+        <section data-markdown>
+          # chainer
+          - Python製のDeapLearing実装の一つ
+          - pylean2よりも後発
+          - 最近話題沸騰中
+        </section>
+
+        <section data-markdown>
+          # YES !!
+          # chainer !!
+        </section>
+
+        <section data-markdown>
+          # とりあえず
+          # 使って覚える
+        </section>
+
+        <section data-markdown>
+          # chainerで判定した
+          # 画像に
+          # どれだけゴミがあるか
+        </section>
+
+        <section data-markdown>
+          # ゴミかどうかは
+          # 結局
+          # 人が判断
+        </section>
+
+        <section data-markdown>
+          # WATSONの認識結果に
+          # 我々の求める情報が
+          # 含まれていれば
+          # それはゴミではない
+        </section>
+
+        <section data-markdown>
+          # ゴミデハナイ
+        </section>
+
+        <section data-markdown>
+          ###### 構成
+        </section>
+
+        <section data-markdown>
+          ###### 結果
+        </section>
+
+        <section data-markdown>
+          ###### まあまあじゃねえか
+        </section>
+
+        <section data-markdown>
+          #### 複数の系を持つ意味
+        </section>
+
+        <section data-markdown>
+          #### お金を払って人にやってもらう方法だってある
+          - この方法は実際にHack-a-thonイベント内でメンバーの方が試していた
+        </section>
+
+        <section data-markdown>
+          #### それでもシステム化したい
+        </section>
+
+        <section data-markdown>
+          ##### システム化のポイント
+          - データの回収
+          - 通知
+          - 人が判断した結果をフィードバック
+        </section>
+
+
+        <section data-markdown>
+          ##### データの回収 -> クローラー
+        </section>
+
+        <section data-markdown>
+          ##### クロールしたデータはMessage Queueに突っ込んでworkerが処理していくようにした
+        </section>
+
+        <section data-markdown>
+          ##### 通知 -> Slack?
+          ちがうよね、そうじゃない
+        </section>
+
+        <section data-markdown>
+          ##### 通知 -> PUSH通知
+        </section>
+
+
+        <section>
+          <h2>アジェンダ</h2>
+          <ol>
+            <li><font color="gray"><strike>宇宙開発と機械学習</strike></font></li>
+            <li><font color="gray"><strike>宇宙文明 VS 認識システム</strike></font></li>
+            <li><font color="white">成果と今後の展望</font></li>
+          </ol>
+        </section>
+
+        <section data-markdown>
+          ##### アプリ化した
+        </section>
+
+        <section data-markdown>
+          ##### スマホアプリ -> PUSH通知で定期的に捕獲情報を配信
+          ユーザは宇宙生物を捕獲することで人気のある宇宙生物をフィードバックできる
+        </section>
+
+        <section data-markdown>
+          ##### 捕獲した宇宙生物を使って次々に侵略してくる宇宙生物から地球を守る
+        </section>
+
+        <section data-markdown>
+          ##### スマホアプリはここから落とせます
+          - やる気がなくなったら容赦なくサービス停止するのであしからず
+          - どっかから出資を受ける感じになったらちゃんと体制を整えます
+          - それまではゆるふわコミュニティです
+        </section>
+
+        <section data-markdown>
+          ##### ad入れて収益化します。
+          ad出したい人はここからアカウント登録してください。
+        </section>
+
+        <section data-markdown>
+          ##### 最後に
+          今までに捕獲した宇宙生物を見てみましょう
+        </section>
+
+        <section>
+          <h2>アジェンダ</h2>
+          <ol>
+            <li><font color="white"><strike>宇宙開発と機械学習</strike></font></li>
+            <li><font color="white"><strike>宇宙文明 VS 認識システム</strike></font></li>
+            <li><font color="white"><strike>成果と今後の展望</strike></font></li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>今日のまとめ</h3>
+          <ul>
+            <li>宇宙生物は存在した</li>
+            <li>アプリで宇宙生物を捕まえられるようになった</li>
+            <li>まだまだ未確認の生命体がいることが予想される</li>
+          </ul>
+        </section>
+
+        <section data-markdown>
+          # 我々の戦いは
+          # まだまだ続いていく
+        </section>
+
+        <section data-markdown>
+          # marseface projectでは
+          # 一緒に戦う仲間を
+          # 募集しています
+        </section>
+
+        <section>
+          <h1>みんなやろうよ!!</h1>
+          <h1>Bluemix</h1>
+          <a href="">
+            <img src="/static/img/bluemix.png" style="float: right; height: 20%; width: 20%;"></img>
+          </a>
+          <p>
+            <br/><br/><br/><br/><br/><br/>
+          </p>
+          <h2>おわり</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="../../bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="../../bower_components/reveal.js/js/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            transition: 'slide',
+            dependencies: [{src: '../../bower_components/reveal.js/lib/js/classList.js',
+                            condition: function() { return !document.body.classList; },
+                           },
+                           {src: '../../bower_components/reveal.js/plugin/markdown/marked.js',
+                            condition: function() {return !!document.querySelector( '[data-markdown]' ); },
+                           },
+                           {src: '../../bower_components/reveal.js/plugin/markdown/markdown.js',
+                            condition: function() { return !!document.querySelector('[data-markdown]' ); }
+                           },
+                           {src: '../../bower_components/reveal.js/plugin/highlight/highlight.js',
+                            async: true,
+                            condition: function() { return !!document.querySelector( 'pre code' ); },
+                            callback: function() { hljs.initHighlightingOnLoad(); },
+                           },
+                           {src: '../../bower_components/reveal.js/plugin/zoom-js/zoom.js',
+                            async: true },
+                           {src: '../../bower_components/reveal.js/plugin/notes/notes.js',
+                            async: true } ] });
+
+    </script>
+    <style type="text/css">
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6 {
+      text-transform: none;
+
+      }
+      h3,
+      h4,
+      h5,
+      h6,
+      .reveal .slides blockquote {
+        text-align: left;
+      }
+      </style>
+  </body>
+</html>
